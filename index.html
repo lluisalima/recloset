@@ -25,757 +25,157 @@
       --green-dark: #16a34a;
       --accent: #d8bbed;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ─── Info Bar ─── */
-    .info-bar {
-      background: var(--accent);
-      color: white;
-      text-align: center;
-      padding: 0.5rem 1rem;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
-
-    /* ─── Header ─── */
-    header {
-      background: rgba(240, 244, 255, 0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 1.5px solid rgba(124, 92, 252, 0.12);
-    }
-
-    .header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-family: 'Nunito', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--text);
-      letter-spacing: -0.02em;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .logo-dot {
-      width: 9px; height: 9px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    .header-tag {
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--muted);
-      background: var(--lavender);
-      padding: 0.3rem 0.9rem;
-      border-radius: 999px;
-    }
-
-    /* ─── Hero ─── */
-    .hero {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 4rem 1.5rem 3rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    @media (max-width: 700px) {
-      .hero { grid-template-columns: 1fr; padding: 2.5rem 1.5rem 2rem; }
-      .hero-visual { display: none; }
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: var(--peach);
-      color: #c2450a;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.85rem;
-      border-radius: 999px;
-      margin-bottom: 1.2rem;
-    }
-
-    .hero-title {
-      font-family: 'Nunito', sans-serif;
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-
-    .hero-title .highlight { color: var(--accent); }
-
-    .hero-sub {
-      font-size: 1rem;
-      color: var(--muted);
-      margin-bottom: 2rem;
-      max-width: 400px;
-      line-height: 1.7;
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--accent);
-      color: white;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 0.9rem;
-      padding: 0.8rem 1.6rem;
-      border-radius: 999px;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(124,92,252,0.35);
-    }
-
-    .hero-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(124,92,252,0.4);
-    }
-
-    .hero-visual {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 0.75rem;
-      height: 320px;
-    }
-
-    .hero-blob {
-      border-radius: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.8rem;
-      transition: transform 0.3s ease;
-    }
-
-    .hero-blob:hover { transform: scale(1.06) rotate(3deg); }
-    .blob-a { background: var(--lavender); grid-row: span 2; font-size: 4rem; border-radius: 2rem; }
-    .blob-b { background: var(--mint); }
-    .blob-c { background: var(--peach); }
-
-    /* ─── Stats strip ─── */
-    .stats-strip {
-      background: white;
-      border-top: 1.5px solid rgba(124,92,252,0.08);
-      border-bottom: 1.5px solid rgba(124,92,252,0.08);
-    }
-
-    .stats-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1.2rem 1.5rem;
-      display: flex;
-      gap: 0;
-      justify-content: space-around;
-      flex-wrap: wrap;
-    }
-
-    .stat { text-align: center; padding: 0.4rem 1rem; }
-
-    .stat-num {
-      font-family: 'Nunito', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 900;
-      color: var(--accent);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.72rem;
-      color: var(--muted);
-      font-weight: 500;
-      margin-top: 0.15rem;
-    }
-
-    /* ─── Fun Banner ─── */
-    .fun-banner {
-      background: var(--lavender);
-      border-radius: 2rem;
-      max-width: 1100px;
-      margin: 2.5rem auto 0;
-      padding: 2rem 2rem;
-      text-align: center;
-      margin-left: 1.5rem;
-      margin-right: 1.5rem;
-    }
-
-    @media (min-width: 1148px) {
-      .fun-banner { margin-left: auto; margin-right: auto; }
-    }
-
-    .fun-banner-emoji { font-size: 2rem; margin-bottom: 0.6rem; }
-    .fun-banner-text {
-      font-family: 'Nunito', sans-serif;
-      font-size: clamp(1.1rem, 3vw, 1.4rem);
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-    }
-    .fun-banner-sub { font-size: 0.85rem; color: var(--muted); }
-
-    /* ─── Products Section ─── */
-    .products-section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem 5rem;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      gap: 0.75rem;
-      margin-bottom: 1.75rem;
-    }
-
-    .section-title {
-      font-family: 'Nunito', sans-serif;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 900;
-      color: var(--text);
-      letter-spacing: -0.02em;
-    }
-
-    .section-count {
-      background: var(--lavender);
-      color: var(--accent);
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.2rem 0.65rem;
-      border-radius: 999px;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 1.5rem;
-    }
-
-    @media (max-width: 600px) {
-      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
-    }
-
-    /* ─── Product Card ─── */
-    .product-card {
-      background: white;
-      border-radius: 1.75rem;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 2px 12px rgba(30,27,46,0.06);
-    }
-
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 14px 36px rgba(30,27,46,0.11);
-    }
-
-    .product-image-wrap {
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 4/5;
-      border-radius: 1.4rem;
-      margin: 0.75rem 0.75rem 0;
-    }
-
-    .placeholder-img {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border-radius: 1.4rem;
-    }
-
-    .placeholder-img svg { width: 1.8rem; height: 1.8rem; opacity: 0.3; }
-
-    .card-bg-lavender .placeholder-img { background: var(--lavender); }
-    .card-bg-mint     .placeholder-img { background: var(--mint); }
-    .card-bg-peach    .placeholder-img { background: var(--peach); }
-    .card-bg-sky      .placeholder-img { background: var(--sky); }
-    .card-bg-lilac    .placeholder-img { background: var(--lilac); }
-    .card-bg-mint2    .placeholder-img { background: var(--mint2); }
-
-    .badge-wrap {
-      position: absolute;
-      top: 0.65rem;
-      left: 0.65rem;
-      right: 0.65rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .product-badge {
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(8px);
-      color: var(--text);
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-      font-family: 'Nunito', sans-serif;
-    }
-
-    .size-badge {
-      background: var(--text);
-      color: white;
-      font-size: 0.65rem;
-      font-weight: 800;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      font-family: 'Nunito', sans-serif;
-    }
-
-    .product-info { padding: 0.9rem 1rem 1rem; }
-
-    .product-name {
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 0.2rem;
-      line-height: 1.3;
-    }
-
-    .product-description {
-      font-size: 0.78rem;
-      color: var(--muted);
-      line-height: 1.55;
-      margin-bottom: 0.75rem;
-    }
-
-    .product-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.75rem;
-    }
-
-    .product-size {
-      font-size: 0.68rem;
-      color: var(--muted);
-      font-weight: 500;
-      background: var(--bg);
-      padding: 0.2rem 0.55rem;
-      border-radius: 999px;
-    }
-
-    .product-price {
-      font-family: 'Nunito', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 900;
-      color: var(--text);
-    }
-
-    /* ─── WhatsApp Button ─── */
-    .btn-whatsapp {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      width: 100%;
-      background: var(--green);
-      color: white;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 800;
-      padding: 0.72rem 1rem;
-      border-radius: 999px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 3px 14px rgba(34,197,94,0.28);
-    }
-
-    .btn-whatsapp:hover {
-      background: var(--green-dark);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 22px rgba(34,197,94,0.4);
-    }
-
-    .btn-whatsapp svg { width: 1rem; height: 1rem; fill: white; flex-shrink: 0; }
-
-    /* ─── Footer ─── */
-    footer {
-      background: var(--text);
-      color: white;
-      border-radius: 2rem 2rem 0 0;
-      padding: 3rem 1.5rem 2rem;
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 3rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    @media (max-width: 640px) {
-      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
-    }
-
-    .footer-logo {
-      font-family: 'Nunito', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 900;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .footer-logo .logo-dot { background: #a78bfa; }
-
-    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
-
-    .footer-heading {
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #a78bfa;
-      font-weight: 800;
-      margin-bottom: 0.9rem;
-    }
-
-    .footer-link {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .footer-link:hover { color: white; }
-    .footer-shipping { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
-
-    .footer-bottom {
-      max-width: 1100px;
-      margin: 1.5rem auto 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.25);
-    }
-
-    /* ─── Animations ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-in { animation: fadeUp 0.65s ease forwards; opacity: 0; }
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.35s; }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-9px); }
-    }
-    .float  { animation: float 3.5s ease-in-out infinite; }
-    .float2 { animation: float 4.2s ease-in-out infinite 0.8s; }
-    .float3 { animation: float 3.8s ease-in-out infinite 1.4s; }
+    body { background-color: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    .info-bar { background: var(--accent); color: white; text-align: center; padding: 0.5rem; font-family: 'Nunito', sans-serif; font-size: 0.75rem; font-weight: 600; }
+    header { background: rgba(240, 244, 255, 0.85); backdrop-filter: blur(14px); position: sticky; top: 0; z-index: 50; border-bottom: 1.5px solid rgba(124, 92, 252, 0.12); }
+    .header-inner { max-width: 1100px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: 'Nunito', sans-serif; font-size: 1.5rem; font-weight: 900; text-decoration: none; color: var(--text); }
+    .logo-dot { width: 9px; height: 9px; background: var(--accent); border-radius: 50%; display: inline-block; }
+    .products-section { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+    .product-card { background: white; border-radius: 2rem; overflow: hidden; transition: transform 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    .product-card:hover { transform: translateY(-5px); }
+    .product-image-wrap { position: relative; aspect-ratio: 4/5; margin: 0.75rem; border-radius: 1.5rem; overflow: hidden; }
+    .badge-wrap { position: absolute; top: 0.75rem; left: 0.75rem; display: flex; gap: 0.5rem; }
+    .product-badge { background: white; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; }
+    .size-badge { background: black; color: white; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.6rem; font-weight: 800; position: absolute; top: 0.75rem; right: 0.75rem; }
+    .product-info { padding: 0 1.5rem 1.5rem; }
+    .product-name { font-family: 'Nunito', sans-serif; font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .product-description { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; min-height: 3rem; }
+    .product-footer { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .product-price { font-family: 'Nunito', sans-serif; font-size: 1.25rem; font-weight: 900; }
+    .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: var(--green); color: white; padding: 0.8rem; border-radius: 999px; text-decoration: none; font-weight: 800; font-size: 0.85rem; transition: background 0.2s; }
+    .btn-whatsapp:hover { background: var(--green-dark); }
+    footer { background: var(--text); color: white; padding: 3rem 1.5rem; border-radius: 2rem 2rem 0 0; text-align: center; }
   </style>
 </head>
 <body>
 
-  <!-- Info Bar -->
-  <div class="info-bar">🚚 Frete para todo o Brasil &nbsp;·&nbsp; 📦 Peças únicas &nbsp;·&nbsp; ✨ Qualidade garantida</div>
+  <div class="info-bar">🚚 Frete para todo o Brasil · 📦 Peças únicas · ✨ Curadoria Premium</div>
 
-  <!-- Header -->
   <header>
     <div class="header-inner">
       <a href="#" class="logo">Recloset By Luisa <span class="logo-dot"></span></a>
-      <span class="header-tag">São Paulo 🌸</span>
+      <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-xs font-bold">São Paulo 🌸</span>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero fade-in">
-    <div>
-      <div class="hero-tag">✨ Coleção 2025</div>
-      <h1 class="hero-title">
-        Crie e viva <br>novas <span class="highlight">histórias</span><br>com essas peças.
-      </h1>
-      <p class="hero-sub">Curadoria com carinho. Moda com história, estilo e uma vibe incrível — pronta pra ir pra você. 🛍️</p>
-      <a href="#produtos" class="hero-cta">
-        Ver peças disponíveis
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="hero-visual">
-      <div class="hero-blob blob-a float">👗</div>
-      <div class="hero-blob blob-b float2">👜</div>
-      <div class="hero-blob blob-c float3">✨</div>
-    </div>
-  </section>
-
-  <!-- Stats -->
-  <div class="stats-strip">
-    <div class="stats-inner">
-      <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Peças disponíveis</div></div>
-      <div class="stat"><div class="stat-num">⭐ 5.0</div><div class="stat-label">Avaliação</div></div>
-      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Peças únicas</div></div>
-      <div class="stat"><div class="stat-num">🚚</div><div class="stat-label">Todo o Brasil</div></div>
-    </div>
-  </div>
-
-  <!-- Fun Banner -->
-  <div class="fun-banner">
-    <div class="fun-banner-emoji">🛍️</div>
-    <div class="fun-banner-text">Ache a peça perfeita pra você!</div>
-    <p class="fun-banner-sub">Cada item é único — quando acabar, acabou. Corre! 😍</p>
-  </div>
-
-  <!-- Products -->
-  <section class="products-section" id="produtos">
-    <div class="section-header fade-in delay-1">
-      <h2 class="section-title">As peças 🌈</h2>
-      <span class="section-count">6 itens</span>
+  <section class="products-section">
+    <div class="mb-8">
+      <h2 class="text-3xl font-extrabold font-['Nunito']">As peças 🌈 <span class="text-sm font-normal bg-lavender px-3 py-1 rounded-full ml-2">6 itens</span></h2>
     </div>
 
     <div class="product-grid">
 
-      <!-- Card 1 -->
-      <div class="product-card card-bg-lavender fade-in delay-1">
-        <div class="product-image-wrap">
-         <div class="product-image-wrap"> <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609383/IMG_7698_2_rwwsp8.ruzgck.jpg"> 
-       class="w-full h-full object-cover" 
-       alt="Slip Dress Branco- Akomb">
-          </div>
-          <div class="badge-wrap">
-            <span class="product-badge">✨ Exclusivo</span>
-            <span class="size-badge">P</span>
-          </div>
+      <div class="product-card">
+        <div class="product-image-wrap card-bg-lavender">
+          <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609383/IMG_7698_2_rwwsp8.ruzgck.jpg" class="w-full h-full object-cover" alt="Slip Dress">
+          <div class="badge-wrap"><span class="product-badge">✨ Exclusivo</span></div>
+          <span class="size-badge">P</span>
         </div>
         <div class="product-info">
-          <h3 class="product-name">Slip Dress Branco- Akomb</h3>
-          <p class="product-description">Modelo perfeito, caimento impecável. Tecido levemente transparente, amarração nas costas para dar um efeito "corset".Para noites que merecem ser inesquecíveis.</p>
+          <h3 class="product-name">Slip Dress Branco - Akomb</h3>
+          <p class="product-description">Modelo perfeito, caimento impecável. Tecido levemente transparente, amarração nas costas.</p>
           <div class="product-footer">
-            <span class="product-size">Tam. P ·Nova·</span>
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Tam. P · Novo</span>
             <span class="product-price">R$ 250</span>
           </div>
-          <a class="btn-whatsapp" href="https://wa.me/5511940651441?text=Ol%C3%A1!%20Tenho%20interesse%20na%20pe%C3%A7a%20Blazer%20Alfaiataria%20Nude%20do%20Bazar." target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Comprar via WhatsApp
-          </a>
+          <a href="https://wa.me/5511940651441?text=Oi! Amei o Slip Dress Branco!" target="_blank" class="btn-whatsapp">Comprar via WhatsApp</a>
         </div>
       </div>
 
-      <!-- Card 2 -->
-      <div class="product-card card-bg-mint fade-in delay-2">
-        <div class="product-image-wrap">
-       <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609339/IMG_6928_3_ruzgck.jpg"> 
-         class="w-full h-full object-cover" 
-         alt="Mini Saia Manteiga- Akomb">
-          </div>
-          <div class="badge-wrap">
-            <span class="product-badge">🖤 Única</span>
-            <span class="size-badge">M</span>
-          </div>
+      <div class="product-card">
+        <div class="product-image-wrap card-bg-mint">
+          <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609339/IMG_6928_3_ruzgck.jpg" class="w-full h-full object-cover" alt="Mini Saia">
+          <div class="badge-wrap"><span class="product-badge">🖤 Única</span></div>
+          <span class="size-badge">M</span>
         </div>
         <div class="product-info">
-          <h3 class="product-name">Mini Saia Manteiga- Akomb</h3>
+          <h3 class="product-name">Mini Saia Manteiga - Akomb</h3>
           <p class="product-description">Malha grossinha para desenhar o corpo. Para todas as ocasiões.</p>
           <div class="product-footer">
-            <span class="product-size">Tam. P ·Nova·</span>
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Tam. M · Novo</span>
             <span class="product-price">R$ 100</span>
           </div>
-          <a class="btn-whatsapp" href="https://wa.me/5511940651441?text=Ol%C3%A1!%20Tenho%20interesse%20na%20pe%C3%A7a%20Vestido%20Midi%20Preto%20Cetim%20do%20Bazar." target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Comprar via WhatsApp
-          </a>
+          <a href="https://wa.me/5511940651441?text=Oi! Amei a Mini Saia Manteiga!" target="_blank" class="btn-whatsapp">Comprar via WhatsApp</a>
         </div>
       </div>
 
-      <!-- Card 3 -->
-      <div class="product-card card-bg-peach fade-in delay-3">
-        <div class="product-image-wrap">
-            <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609435/IMG_7738_2_h1s9yw.ruzgck.jpg"> 
-         class="w-full h-full object-cover" 
-         alt="Top Gráfico - Neriage">
-          <div class="badge-wrap">
-            <span class="product-badge">🌟 Raro</span>
-            <span class="size-badge">G</span>
-          </div>
+      <div class="product-card">
+        <div class="product-image-wrap card-bg-peach">
+          <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609435/IMG_7738_2_h1s9yw.ruzgck.jpg" class="w-full h-full object-cover" alt="Top Neriage">
+          <div class="badge-wrap"><span class="product-badge">🌟 Raro</span></div>
+          <span class="size-badge">P</span>
         </div>
         <div class="product-info">
-          <h3 class="product-name">Top Gráfico- Neriage</h3>
-          <p class="product-description">Top com decote reto, padronagem em azul marinho.Perfeito para os dias de sol! </p>
+          <h3 class="product-name">Top Gráfico - Neriage</h3>
+          <p class="product-description">Top com decote reto, padronagem em azul marinho. Perfeito para dias de sol.</p>
           <div class="product-footer">
-            <span class="product-size">Tam. P </span>
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Tam. P</span>
             <span class="product-price">R$ 890</span>
           </div>
-          <a class="btn-whatsapp" href="https://wa.me/5511940651441?text=Ol%C3%A1!%20Tenho%20interesse%20na%20pe%C3%A7a%20Casaco%20L%C3%A3%20Caramelo%20do%20Bazar." target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Comprar via WhatsApp
-          </a>
+          <a href="https://wa.me/5511940651441?text=Oi! Tenho interesse no Top Neriage!" target="_blank" class="btn-whatsapp">Comprar via WhatsApp</a>
         </div>
       </div>
 
-      <!-- Card 4 -->
-      <div class="product-card card-bg-sky fade-in delay-1">
-        <div class="product-image-wrap">
-        <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609433/IMG_7730_2_hnyefj.ruzgck.jpg"> 
-         class="w-full h-full object-cover" 
-         alt="Cropped Preto- Nike">
-          <div class="badge-wrap">
-            <span class="product-badge">🔥 Tendência</span>
-            <span class="size-badge">P</span>
-          </div>
+      <div class="product-card">
+        <div class="product-image-wrap card-bg-sky">
+          <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609433/IMG_7730_2_hnyefj.ruzgck.jpg" class="w-full h-full object-cover" alt="Nike">
+          <div class="badge-wrap"><span class="product-badge">🔥 Tendência</span></div>
+          <span class="size-badge">P</span>
         </div>
         <div class="product-info">
-          <h3 class="product-name">Cropped Gola- Nike</h3>
-          <p class="product-description">Cropped estilo camisa Polo, possui um zíper para você escolher o decote. Muito charmosa e versátil.</p>
+          <h3 class="product-name">Cropped Gola - Nike</h3>
+          <p class="product-description">Estilo polo com zíper. Muito charmosa e versátil para o dia a dia.</p>
           <div class="product-footer">
-            <span class="product-size">Tam. P </span>
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Tam. P</span>
             <span class="product-price">R$ 80</span>
           </div>
-          <a class="btn-whatsapp" href="https://wa.me/5511940651441?text=Ol%C3%A1!%20Tenho%20interesse%20na%20pe%C3%A7a%20Cal%C3%A7a%20Pantalona%20Off-White%20do%20Bazar." target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Comprar via WhatsApp
-          </a>
+          <a href="https://wa.me/5511940651441?text=Oi! Quero o cropped da Nike!" target="_blank" class="btn-whatsapp">Comprar via WhatsApp</a>
         </div>
       </div>
 
-      <!-- Card 5 -->
-      <div class="product-card card-bg-lilac fade-in delay-2">
-        <div class="product-image-wrap">
-         <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609396/IMG_7712_2_xk1jfa.ruzgck.jpg"> 
-         class="w-full h-full object-cover" 
-         alt="Camisa de Botões Verde">
-          <div class="badge-wrap">
-            <span class="product-badge">💜 Clássico</span>
-            <span class="size-badge">M</span>
-          </div>
+      <div class="product-card">
+        <div class="product-image-wrap card-bg-lilac">
+          <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609396/IMG_7712_2_xk1jfa.ruzgck.jpg" class="w-full h-full object-cover" alt="Camisa Verde">
+          <div class="badge-wrap"><span class="product-badge">💜 Clássico</span></div>
+          <span class="size-badge">P</span>
         </div>
         <div class="product-info">
           <h3 class="product-name">Camisa de Botões Verde</h3>
-          <p class="product-description">Modelagem ampla e punhos "flaire". Delicada e autêntica.</p>
+          <p class="product-description">Modelagem ampla e punhos flaire. Delicada e autêntica.</p>
           <div class="product-footer">
-            <span class="product-size">Tam. P ·</span>
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Tam. P</span>
             <span class="product-price">R$ 70</span>
           </div>
-          <a class="btn-whatsapp" href="https://wa.me/5511940651441?text=Ol%C3%A1!%20Tenho%20interesse%20na%20pe%C3%A7a%20Blusa%20Seda%20Borgonha%20do%20Bazar." target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Comprar via WhatsApp
-          </a>
+          <a href="https://wa.me/5511940651441?text=Oi! Tenho interesse na camisa verde!" target="_blank" class="btn-whatsapp">Comprar via WhatsApp</a>
         </div>
       </div>
 
-      <!-- Card 6 -->
-      <div class="product-card card-bg-mint2 fade-in delay-3">
-        <div class="product-image-wrap">
-        <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609351/IMG_6931_3_uyyyrk.ruzgck.jpg"> 
-         class="w-full h-full object-cover" 
-         alt="Macaquinho Fitness Preto- Ace">
-          </div>
-          <div class="badge-wrap">
-            <span class="product-badge">🕰️ Vintage</span>
-            <span class="size-badge">M</span>
-          </div>
+      <div class="product-card">
+        <div class="product-image-wrap card-bg-mint2">
+          <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609351/IMG_6931_3_uyyyrk.ruzgck.jpg" class="w-full h-full object-cover" alt="Macaquinho">
+          <div class="badge-wrap"><span class="product-badge">🕰️ Fitness</span></div>
+          <span class="size-badge">P</span>
         </div>
         <div class="product-info">
-          <h3 class="product-name">Macaquinho Fitness Preto- Ace</h3>
-          <p class="product-description">Macaquinho perfeito para os seus treinos e aulas de pilates. Desenha o corpo e ainda possui um decote lindo nas costas.</p>
+          <h3 class="product-name">Macaquinho Ace Fitness</h3>
+          <p class="product-description">Perfeito para treinos ou pilates. Decote lindo nas costas.</p>
           <div class="product-footer">
-            <span class="product-size">Tam. P</span>
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Tam. P</span>
             <span class="product-price">R$ 70</span>
           </div>
-          <a class="btn-whatsapp" href="https://wa.me/5511940651441?text=Ol%C3%A1!%20Tenho%20interesse%20na%20pe%C3%A7a%20Trench%20Coat%20Bege%20Cl%C3%A1ssico%20do%20Bazar." target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Comprar via WhatsApp
-          </a>
+          <a href="https://wa.me/5511940651441?text=Oi! Quero o macaquinho preto!" target="_blank" class="btn-whatsapp">Comprar via WhatsApp</a>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <div class="footer-inner">
-      <div>
-        <div class="footer-logo">Recloset By Luisa<span class="logo-dot"></span></div>
-        <p class="footer-copy">Curadoria de moda com amor e carinho. Do meu guarda-roupas para o seu. Por Luisa Lima 💜</p>
-      </div>
-      <div>
-        <p class="footer-heading">Redes sociais</p>
-        <a class="footer-link" href="https://instagram.com" target="_blank" rel="noopener">
-          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          @reclosetbyluisa
-        </a>
-        <a class="footer-link" href="https://wa.me/5511940651441" target="_blank" rel="noopener">
-          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          WhatsApp direto
-        </a>
-      </div>
-      <div>
-        <p class="footer-heading">Envios 📦</p>
-        <p class="footer-shipping">Enviamos para todo o Brasil via Correios e transportadoras. Prazo de 3 a 7 dias úteis. Embalagem especial inclusa com amor. 💌</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2025 Recloset By Luisa — Todos os direitos reservados</span>
-      <span>Feito com 💜 em São Paulo</span>
-    </div>
+    <p class="font-bold">Recloset By Luisa <span class="logo-dot"></span></p>
+    <p class="text-xs text-gray-400 mt-2">Curadoria com amor. São Paulo, 2026.</p>
   </footer>
 
 </body>
