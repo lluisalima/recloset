@@ -4,617 +4,1096 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Recloset By Luisa</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --sage: #b5c9b7;
-      --sage-light: #dceadd;
-      --blush: #f2cdd4;
-      --blush-light: #fae8eb;
-      --sky: #c3d9e8;
-      --sky-light: #e4f0f7;
-      --cream: #f7f4f0;
-      --dark: #2a2a2a;
+      /* Pinterest Design System */
+      --primary: #e60023;
+      --primary-pressed: #cc001f;
+      --ink: #000000;
+      --ink-soft: #211922;
+      --body: #33332e;
+      --charcoal: #262622;
+      --mute: #62625b;
+      --ash: #91918c;
+      --stone: #c8c8c1;
+      --hairline: #dadad3;
+      --hairline-soft: #e5e5e0;
+      --canvas: #ffffff;
+      --surface-soft: #fbfbf9;
+      --surface-card: #f6f6f3;
+      --surface-elevated: #ffffff;
+      --surface-dark: #262622;
+      --on-dark: #ffffff;
+      
+      /* Radius */
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 32px;
+      --radius-full: 9999px;
+      
+      /* Spacing */
+      --space-xxs: 4px;
+      --space-xs: 6px;
+      --space-sm: 8px;
+      --space-md: 12px;
+      --space-lg: 16px;
+      --space-xl: 24px;
+      --space-xxl: 32px;
+      --space-section: 64px;
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background-color: var(--cream);
-      font-family: 'DM Sans', sans-serif;
-      color: var(--dark);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--canvas);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.4;
     }
 
-    h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
-    }
-
-    /* Noise texture overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.4;
-    }
-
-    /* Header */
-    header {
-      background: var(--cream);
-      border-bottom: 2px solid var(--dark);
-    }
-
-    .tag-pill {
-      border: 1.5px solid var(--dark);
-      border-radius: 999px;
-      padding: 4px 14px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      display: inline-block;
-    }
-
-    /* Marque scroll */
-    .marquee-wrap {
-      overflow: hidden;
-      border-top: 1.5px solid var(--dark);
-      border-bottom: 1.5px solid var(--dark);
-      background: var(--blush);
-      padding: 8px 0;
-    }
-    .marquee-inner {
-      display: flex;
-      gap: 48px;
-      width: max-content;
-      animation: marquee 18s linear infinite;
-      white-space: nowrap;
-    }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-    .marquee-item {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
-
-    /* Cards */
-    .card {
-      background: white;
-      border: 2px solid var(--dark);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      position: relative;
-    }
-    .card:hover {
-      transform: translateY(-6px) rotate(-0.5deg);
-      box-shadow: 6px 6px 0px var(--dark);
-    }
-
-    .card-img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      display: block;
-      background: #e8e4df;
-    }
-
-    .card-img-placeholder {
-      width: 100%;
-      aspect-ratio: 3/4;
+    /* ── NAV ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--canvas);
+      border-bottom: 1px solid var(--hairline);
+      padding: 12px 24px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-size: 0.75rem;
-      color: #999;
-      font-weight: 500;
-      letter-spacing: 0.05em;
+      justify-content: space-between;
     }
 
-    .badge-size {
-      background: var(--sage-light);
-      border: 1.5px solid var(--sage);
-      color: #3a5c3e;
-      border-radius: 999px;
-      padding: 2px 10px;
-      font-size: 0.7rem;
+    .nav-logo {
+      font-size: 20px;
       font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .badge-sold {
-      background: #fee;
-      border: 1.5px solid #f4a0a8;
-      color: #c05060;
-      border-radius: 999px;
-      padding: 2px 10px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .btn-whatsapp {
-      background: var(--dark);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      padding: 12px 20px;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: 0.85rem;
-      cursor: pointer;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: background 0.2s, transform 0.15s;
+      color: var(--primary);
       text-decoration: none;
+      letter-spacing: -0.5px;
     }
-    .btn-whatsapp:hover {
-      background: #3a5c3e;
+
+    .nav-cart {
+      position: relative;
+      background: var(--surface-card);
+      border: none;
+      border-radius: var(--radius-full);
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .nav-cart:hover {
+      background: var(--hairline-soft);
+    }
+
+    .nav-cart svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--ink);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--primary);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 20px;
+      height: 20px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: var(--space-section) var(--space-xl);
+      text-align: center;
+      background: var(--surface-soft);
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 70px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -1.2px;
+      margin-bottom: var(--space-lg);
+      color: var(--ink);
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: var(--mute);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── MASONRY GRID ── */
+    .grid-section {
+      padding: var(--space-section) var(--space-xl);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .grid-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .grid-header h2 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -1.2px;
+    }
+
+    .grid-count {
+      background: var(--surface-card);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .masonry {
+      columns: 4;
+      column-gap: var(--space-sm);
+    }
+
+    @media (max-width: 1200px) { .masonry { columns: 3; } }
+    @media (max-width: 768px) { .masonry { columns: 2; } }
+    @media (max-width: 480px) { .masonry { columns: 1; } }
+
+    /* ── PIN CARD ── */
+    .pin-card {
+      break-inside: avoid;
+      margin-bottom: var(--space-sm);
+      background: var(--surface-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .pin-card:hover {
       transform: scale(1.02);
     }
 
-    /* Color swatches on cards */
-    .card-sage { --card-accent: var(--sage-light); }
-    .card-blush { --card-accent: var(--blush-light); }
-    .card-sky   { --card-accent: var(--sky-light); }
-
-    .card-header-accent {
-      height: 6px;
-      background: var(--card-accent, var(--sage-light));
-    }
-
-    /* Footer */
-    footer {
-      background: var(--dark);
-      color: white;
-      border-top: 2px solid var(--dark);
-    }
-
-    footer a:hover { text-decoration: underline; }
-
-    .dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    /* Animate cards in on load */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .card { animation: fadeUp 0.5s ease both; }
-    .card:nth-child(1) { animation-delay: 0.05s; }
-    .card:nth-child(2) { animation-delay: 0.12s; }
-    .card:nth-child(3) { animation-delay: 0.19s; }
-    .card:nth-child(4) { animation-delay: 0.26s; }
-    .card:nth-child(5) { animation-delay: 0.33s; }
-    .card:nth-child(6) { animation-delay: 0.40s; }
-    .card:nth-child(7) { animation-delay: 0.47s; }
-    .card:nth-child(8) { animation-delay: 0.54s; }
-
-    /* Hero squiggle */
-    .squiggle {
-      display: inline-block;
-      position: relative;
-    }
-    .squiggle::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
+    .pin-card img {
       width: 100%;
-      height: 4px;
-      background: var(--blush);
-      border-radius: 2px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .pin-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.4));
+      opacity: 0;
+      transition: opacity 0.2s;
+      display: flex;
+      align-items: flex-end;
+      padding: var(--space-md);
+    }
+
+    .pin-card:hover .pin-overlay {
+      opacity: 1;
+    }
+
+    .pin-save-btn {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: all 0.2s;
+    }
+
+    .pin-card:hover .pin-save-btn {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pin-save-btn:hover {
+      background: var(--primary-pressed);
+    }
+
+    .pin-save-btn.added {
+      background: var(--surface-dark);
+    }
+
+    .pin-info {
+      padding: var(--space-md);
+    }
+
+    .pin-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: var(--space-xxs);
+    }
+
+    .pin-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pin-price {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .pin-size {
+      font-size: 12px;
+      color: var(--mute);
+      background: var(--surface-soft);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+    }
+
+    .pin-sold {
+      position: absolute;
+      top: var(--space-md);
+      left: var(--space-md);
+      background: var(--surface-dark);
+      color: var(--on-dark);
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* ── CART DRAWER ── */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+
+    .cart-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      max-width: 420px;
+      height: 100vh;
+      background: var(--canvas);
+      z-index: 201;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.1);
+    }
+
+    .cart-drawer.open {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      padding: var(--space-xl);
+      border-bottom: 1px solid var(--hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-header h2 {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .cart-close {
+      background: var(--surface-card);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--space-lg);
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: var(--space-section) var(--space-lg);
+      color: var(--mute);
+    }
+
+    .cart-item {
+      display: flex;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      background: var(--surface-card);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-sm);
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: var(--space-xxs);
+    }
+
+    .cart-item-price {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: var(--mute);
+      cursor: pointer;
+      font-size: 12px;
+      text-decoration: underline;
+      padding: 0;
+      margin-top: var(--space-xs);
+    }
+
+    .cart-footer {
+      padding: var(--space-xl);
+      border-top: 1px solid var(--hairline);
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: var(--space-lg);
+    }
+
+    .cart-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 14px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-pressed);
+    }
+
+    .btn-secondary {
+      background: var(--surface-card);
+      color: var(--ink);
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 14px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: var(--hairline-soft);
+    }
+
+    /* ── CHECKOUT MODAL ── */
+    .checkout-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-lg);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+
+    .checkout-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .checkout-card {
+      background: var(--canvas);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xxl);
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+    }
+
+    .checkout-card h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: var(--space-lg);
+    }
+
+    .checkout-summary {
+      background: var(--surface-card);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .checkout-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: var(--space-xs);
+    }
+
+    .checkout-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--hairline);
+    }
+
+    .payment-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+
+    .payment-option {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-lg);
+      border: 2px solid var(--hairline);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .payment-option:hover,
+    .payment-option.selected {
+      border-color: var(--ink);
+      background: var(--surface-soft);
+    }
+
+    .payment-option svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .payment-option-info h3 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .payment-option-info p {
+      font-size: 14px;
+      color: var(--mute);
+    }
+
+    .pix-section {
+      text-align: center;
+      padding: var(--space-xl);
+      background: var(--surface-card);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .pix-qr {
+      width: 200px;
+      height: 200px;
+      background: var(--canvas);
+      border: 2px solid var(--hairline);
+      border-radius: var(--radius-md);
+      margin: 0 auto var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--mute);
+    }
+
+    .pix-key {
+      font-family: monospace;
+      font-size: 14px;
+      background: var(--canvas);
+      padding: var(--space-md);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--hairline);
+      word-break: break-all;
+      margin-bottom: var(--space-md);
+    }
+
+    .pix-copy {
+      background: var(--surface-dark);
+      color: var(--on-dark);
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 10px 20px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .checkout-close {
+      position: absolute;
+      top: var(--space-lg);
+      right: var(--space-lg);
+      background: var(--surface-card);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--canvas);
+      border-top: 1px solid var(--hairline);
+      padding: var(--space-xxl) var(--space-xl);
+      margin-top: var(--space-section);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: var(--space-xl);
+    }
+
+    .footer-brand h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      color: var(--mute);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--space-xxl);
+    }
+
+    .footer-col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: var(--mute);
+      text-decoration: none;
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer-col a:hover {
+      color: var(--ink);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: var(--space-xxl) auto 0;
+      padding-top: var(--space-xl);
+      border-top: 1px solid var(--hairline);
+      font-size: 12px;
+      color: var(--mute);
+    }
+
+    /* ── UTILITIES ── */
+    .hidden { display: none !important; }
+
+    @media (max-width: 640px) {
+      .hero { padding: var(--space-xxl) var(--space-lg); }
+      .grid-section { padding: var(--space-xxl) var(--space-lg); }
+      .checkout-card { padding: var(--space-xl); }
+      .cart-drawer { max-width: 100%; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">Recloset By Luisa</a>
+    <button class="nav-cart" id="cartBtn" aria-label="Abrir carrinho">
+      <svg viewBox="0 0 24 24"><path d="M9 22a1 1 0 100-2 1 1 0 000 2zm7 0a1 1 0 100-2 1 1 0 000 2zM7.2 16h9.6c.55 0 1.02-.35 1.2-.85l2.3-6.9c.12-.36-.03-.75-.35-.95a.968.968 0 00-1.05-.05L6.5 5.5l-.5-2.1c-.1-.4-.45-.7-.85-.7H2c-.55 0-1 .45-1 1s.45 1 1 1h2.35l2.1 8.8-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12c.55 0 1-.45 1-1s-.45-1-1-1H8.1c-.15 0-.3-.1-.35-.25-.06-.15-.05-.3.02-.42l1.1-2.05z"/></svg>
+      <span class="cart-badge hidden" id="cartBadge">0</span>
+    </button>
+  </nav>
 
-<header class="sticky top-0 z-50 px-5 py-4">
-  <div class="max-w-5xl mx-auto flex items-center justify-between">
-    <div>
-      <div class="tag-pill mb-1">bazar online ✦</div>
-      <h1 class="text-2xl md:text-3xl font-black leading-none" style="font-family:'Playfair Display',serif;">
-        Recloset <span style="color:#b5c9b7;">By</span> Luisa
-      </h1>
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <h1>O armário dos seus sonhos começa aqui.</h1>
+    <p>Peças únicas que merecem uma segunda chance. Do meu guarda-roupa pro seu, com carinho.</p>
+  </section>
+
+  <!-- ── GRID ── -->
+  <section class="grid-section">
+    <div class="grid-header">
+      <h2>Disponíveis agora</h2>
+      <span class="grid-count" id="gridCount">16 peças</span>
     </div>
-    <p class="hidden md:block text-sm font-medium text-right max-w-[220px] leading-snug" style="color:#666;">
-      Peças únicas que merecem uma segunda chance ✨
-    </p>
-  </div>
-</header>
 
+    <div class="masonry" id="masonryGrid">
+      <!-- Cards gerados via JS -->
+    </div>
+  </section>
 
-<div class="marquee-wrap">
-  <div class="marquee-inner">
-    <span class="marquee-item">✦ Moda circular</span>
-    <span class="marquee-item">✦ Peças selecionadas</span>
-    <span class="marquee-item">✦ Envio para todo o Brasil</span>
-    <span class="marquee-item">✦ Compre via WhatsApp</span>
-    <span class="marquee-item">✦ Armário novo, planeta feliz</span>
-    <span class="marquee-item">✦ Moda circular</span>
-    <span class="marquee-item">✦ Peças selecionadas</span>
-    <span class="marquee-item">✦ Envio para todo o Brasil</span>
-    <span class="marquee-item">✦ Compre via WhatsApp</span>
-    <span class="marquee-item">✦ Armário novo, planeta feliz</span>
-  </div>
-</div>
+  <!-- ── CART DRAWER ── -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h2>Seu carrinho</h2>
+      <button class="cart-close" id="cartClose" aria-label="Fechar carrinho">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty" id="cartEmpty">
+        <p>Seu carrinho está vazio.</p>
+        <p style="font-size: 14px; margin-top: 8px;">Adicione peças que você ama!</p>
+      </div>
+    </div>
+    <div class="cart-footer hidden" id="cartFooter">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotal">R$ 0</span>
+      </div>
+      <div class="cart-actions">
+        <button class="btn-primary" id="checkoutBtn">Finalizar compra</button>
+        <button class="btn-secondary" id="continueShopping">Continuar comprando</button>
+      </div>
+    </div>
+  </aside>
 
+  <!-- ── CHECKOUT MODAL ── -->
+  <div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-card" style="position: relative;">
+      <button class="checkout-close" id="checkoutClose" aria-label="Fechar checkout">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      
+      <h2>Finalizar compra</h2>
+      
+      <div class="checkout-summary" id="checkoutSummary">
+        <!-- Itens do checkout -->
+      </div>
 
-<section class="max-w-5xl mx-auto px-5 py-12 md:py-16 text-center">
-  <h2 class="text-4xl md:text-6xl font-black leading-tight mb-4">
-    O armário dos seus <span class="squiggle">sonhos</span><br/>
-    começa aqui.
-  </h2>
-  <p class="text-base md:text-lg font-medium" style="color:#777; max-width:420px; margin:0 auto;">
-     Peças que eu amei e que vão te amar de volta. Do meu guarda-roupa pro seu, com carinho. - Luisa Lima
-  </p>
-
-  <!-- Color blobs decorative -->
-  <div class="flex justify-center gap-3 mt-8">
-    <span class="dot" style="background:var(--sage); width:10px;height:10px;"></span>
-    <span class="dot" style="background:var(--blush); width:10px;height:10px;"></span>
-    <span class="dot" style="background:var(--sky); width:10px;height:10px;"></span>
-  </div>
-</section>
-
-
-<section class="max-w-5xl mx-auto px-5 pb-20">
-  <div class="flex items-center gap-3 mb-8">
-    <h2 class="text-2xl md:text-3xl font-black">Disponíveis agora</h2>
-    <span class="tag-pill" style="background:var(--sage-light);">8 peças ✦</span>
-  </div>
-
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-
-    <!-- ── CARD 1 ── -->
-    <div class="card card-blush">
-      <div class="card-header-accent"></div>
-      <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609450/IMG_7740_2_ta37cq.jpg" alt="Top Rosa - Neriage" class="card-img" />
-      <div class="p-4">
-        <div class="flex items-center justify-between mb-1">
-          <span class="badge-size">P</span>
-          <span class="text-lg font-black">R$ 65</span>
+      <div class="payment-options" id="paymentOptions">
+        <div class="payment-option" data-method="pix">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 10h20M7 15h4"/>
+          </svg>
+          <div class="payment-option-info">
+            <h3>Pix</h3>
+            <p>Transferência instantânea, sem taxas</p>
+          </div>
         </div>
-        <h3 class="font-black text-base leading-tight mt-2">Top Rosa - Neriage</h3>
-        <p class="text-xs font-medium mt-1" style="color:#888;">Clássico eterno. Combina com tudo e eleva qualquer look. Novo!</p>
-        <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Blazer%20Oversized%20Bege%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Comprar
-        </a>
-      </div>
-    </div>
-
-    <!-- ── CARD 2 ── -->
-    <div class="card card-sage">
-      <div class="card-header-accent"></div>
-      <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609401/IMG_7723_2_fweuwd.jpg" alt="Tule com Desenhos - Forever 21" class="card-img" />
-      <div class="p-4">
-        <div class="flex items-center justify-between mb-1">
-          <span class="badge-size">P</span>
-          <span class="text-lg font-black">R$ 45</span>
+        <div class="payment-option" data-method="whatsapp">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          <div class="payment-option-info">
+            <h3>WhatsApp</h3>
+            <p>Falar direto comigo pra combinar</p>
+          </div>
         </div>
-        <h3 class="font-black text-base leading-tight mt-2">Tule com Desenhos - Forever 21</h3>
-        <p class="text-xs font-medium mt-1" style="color:#888;">Super cool e fica lindo com jeans!</p>
-        <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Camiseta%20Vintage%20Listrada%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Comprar
-        </a>
       </div>
-    </div>
 
-    <!-- ── CARD 3 ── -->
-    <div class="card card-sky">
-      <div class="card-header-accent"></div>
-      <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609396/IMG_7712_2_xk1jfa.jpg" alt="Camisa Verde Limão" class="card-img" />
-      <div class="p-4">
-        <div class="flex items-center justify-between mb-1">
-          <span class="badge-size">P</span>
-          <span class="text-lg font-black">R$ 120</span>
+      <!-- PIX SECTION -->
+      <div class="pix-section hidden" id="pixSection">
+        <h3 style="margin-bottom: 16px;">Pague com Pix</h3>
+        <div class="pix-qr" id="pixQr">
+          <!-- QR Code placeholder -->
+          <span>QR Code Pix</span>
         </div>
-        <h3 class="font-black text-base leading-tight mt-2">Camisa Verde Limão</h3>
-        <p class="text-xs font-medium mt-1" style="color:#888;">Corte perfeito, super versátil. Uma peça-chave pro guarda-roupa.</p>
-        <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Casaco%20Jeans%20Escuro%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Comprar
+        <p style="font-size: 14px; color: var(--mute); margin-bottom: 12px;">Chave Pix (celular):</p>
+        <div class="pix-key" id="pixKey">5511940651441</div>
+        <button class="pix-copy" id="pixCopy">Copiar chave</button>
+        <p style="font-size: 12px; color: var(--mute); margin-top: 16px;">
+          Após o pagamento, me manda o comprovante no WhatsApp que eu reservo suas peças!
+        </p>
+        <button class="btn-primary" style="margin-top: 16px; width: 100%;" id="pixDone">
+          Já fiz o Pix
+        </button>
+      </div>
+
+      <!-- WHATSAPP SECTION -->
+      <div class="hidden" id="whatsappSection" style="text-align: center; padding: var(--space-xl);">
+        <h3 style="margin-bottom: 16px;">Combinar pelo WhatsApp</h3>
+        <p style="font-size: 14px; color: var(--mute); margin-bottom: 24px;">
+          Clique abaixo pra abrir o WhatsApp com sua lista de peças pronta pra enviar.
+        </p>
+        <a href="#" class="btn-primary" id="whatsappLink" target="_blank" style="display: block; text-decoration: none;">
+          Abrir WhatsApp
         </a>
       </div>
     </div>
+  </div>
 
-    <!-- ── CARD 4 ── -->
-    <div class="card card-blush">
-      <div class="card-header-accent"></div>
-      <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609385/IMG_7702_2_j1ll4r.jpg" alt="Slip Dress Branco - Akomb" class="card-img" />
-      <div class="p-4">
-        <div class="flex items-center justify-between mb-1">
-          <span class="badge-size">P</span>
-          <span class="text-lg font-black">R$ 200</span>
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Recloset By Luisa</h3>
+        <p>Moda circular com muito estilo.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <a href="https://instagram.com/reclosetbyluisa" target="_blank">Instagram</a>
+          <a href="https://wa.me/5511940651441" target="_blank">WhatsApp</a>
         </div>
-        <h3 class="font-black text-base leading-tight mt-2">Slip Dress Branco</h3>
-        <p class="text-xs font-medium mt-1" style="color:#888;">Leve, feminino e cheio de personalidade. Ideal pra qualquer ocasião. Novo, nunca usado!</p>
-        <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Vestido%20Midi%20Floral%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Comprar
-        </a>
-      </div>
-    </div>
-
-    <!-- ── CARD 5 ── -->
-    <div class="card card-sage">
-      <div class="card-header-accent"></div>
-      <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609366/IMG_6949_3_y88jcp.jpg" alt="Cropped com Mangas" class="card-img" />
-      <div class="p-4">
-        <div class="flex items-center justify-between mb-1">
-          <span class="badge-size">P</span>
-          <span class="text-lg font-black">R$ 30</span>
+        <div class="footer-col">
+          <h4>Sobre</h4>
+          <a href="#">Envios para todo o Brasil</a>
+          <a href="#">Peças únicas</a>
         </div>
-        <h3 class="font-black text-base leading-tight mt-2">Cropped com Mangas</h3>
-        <p class="text-xs font-medium mt-1" style="color:#888;">O modelo do momento. Um rosé nada básico!</p>
-        <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Calça%20Wide%20Leg%20Bege%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Comprar
-        </a>
       </div>
     </div>
+    <div class="footer-bottom">
+      <p>Feito com ♥ pela Luisa · 2025</p>
+    </div>
+  </footer>
 
-    <!-- ── CARD 6 ── -->
-    <div class="card card-sky">
-      <div class="card-header-accent"></div>
-      <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609351/IMG_6931_3_uyyyrk.jpg" alt="Macaquinho Fitness Preto" class="card-img" />
-      <div class="p-4">
-        <div class="flex items-center justify-between mb-1">
-          <span class="badge-size">P</span>
-          <span class="text-lg font-black">R$ 70</span>
+  <script>
+    // ── DADOS DOS PRODUTOS ──
+    const products = [
+      { id: 1, name: "Top Rosa - Neriage", price: 65, size: "P", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609450/IMG_7740_2_ta37cq.jpg", desc: "Clássico eterno. Combina com tudo.", sold: false },
+      { id: 2, name: "Tule com Desenhos - Forever 21", price: 45, size: "P", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609401/IMG_7723_2_fweuwd.jpg", desc: "Super cool e fica lindo com jeans!", sold: false },
+      { id: 3, name: "Camisa Verde Limão", price: 120, size: "P", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609396/IMG_7712_2_xk1jfa.jpg", desc: "Corte perfeito, super versátil.", sold: false },
+      { id: 4, name: "Slip Dress Branco", price: 200, size: "P", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609385/IMG_7702_2_j1ll4r.jpg", desc: "Leve, feminino e cheio de personalidade.", sold: false },
+      { id: 5, name: "Cropped com Mangas", price: 30, size: "P", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609366/IMG_6949_3_y88jcp.jpg", desc: "O modelo do momento.", sold: false },
+      { id: 6, name: "Macaquinho Fitness Preto", price: 70, size: "P", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609351/IMG_6931_3_uyyyrk.jpg", desc: "Perfeito para pilates ou gym.", sold: false },
+      { id: 7, name: "Mini Saia Manteiga - Akomb", price: 100, size: "P", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609339/IMG_6928_3_ruzgck.jpg", desc: "Elegância no DNA.", sold: false },
+      { id: 8, name: "Bucket Hat - New Era", price: 100, size: "M", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609336/IMG_5054_2_yyjes4.jpg", desc: "Conforto máximo com estilo único.", sold: false },
+      { id: 9, name: "Polo Cropped - Nike", price: 80, size: "P", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609433/IMG_7732_2_nwljae.jpg", desc: "Atemporal, perfeita para todas as ocasiões.", sold: false },
+      { id: 10, name: "Cropped Cetim - Zara", price: 45, size: "P", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609398/IMG_7716_2_xrflct.jpg", desc: "Super levinho e fresco.", sold: false },
+      { id: 11, name: "Moletom Cropped Preto", price: 50, size: "P", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609283/IMG_5008_2_rvvv53.jpg", desc: "Quentinho e estiloso.", sold: false },
+      { id: 12, name: "Gym Top - Nike", price: 30, size: "PP", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609451/IMG_7745_2_dnuou8.jpg", desc: "Perfeita sustentação para treinos.", sold: false },
+      { id: 13, name: "Bota Preta", price: 60, size: "39", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771716375/IMG_0101_wt8r4i.jpg", desc: "Estilosa e confortável!", sold: false },
+      { id: 14, name: "Bolsa 3x1 - Carmen Steffens", price: 70, size: "U", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771716360/FullSizeRender_c42ner.jpg", desc: "Vira shoulder, handbag, clutch e cross-body!", sold: false },
+      { id: 15, name: "Bota Branca", price: 60, size: "38", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771716377/IMG_0103_txixmw.jpg", desc: "Toque de personalidade no look.", sold: false },
+      { id: 16, name: "Top Cintilante Frente Única", price: 50, size: "P", img: "https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771718146/IMG_5032_2_nxwz7e.jpg", desc: "Dias de sol pedem esse top!", sold: false },
+    ];
+
+    // ── ESTADO ──
+    let cart = JSON.parse(localStorage.getItem('recloset_cart')) || [];
+
+    // ── DOM ELEMENTS ──
+    const masonryGrid = document.getElementById('masonryGrid');
+    const cartBtn = document.getElementById('cartBtn');
+    const cartBadge = document.getElementById('cartBadge');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const cartDrawer = document.getElementById('cartDrawer');
+    const cartClose = document.getElementById('cartClose');
+    const cartItems = document.getElementById('cartItems');
+    const cartEmpty = document.getElementById('cartEmpty');
+    const cartFooter = document.getElementById('cartFooter');
+    const cartTotal = document.getElementById('cartTotal');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const continueShopping = document.getElementById('continueShopping');
+    const checkoutModal = document.getElementById('checkoutModal');
+    const checkoutClose = document.getElementById('checkoutClose');
+    const checkoutSummary = document.getElementById('checkoutSummary');
+    const paymentOptions = document.getElementById('paymentOptions');
+    const pixSection = document.getElementById('pixSection');
+    const whatsappSection = document.getElementById('whatsappSection');
+    const pixKey = document.getElementById('pixKey');
+    const pixCopy = document.getElementById('pixCopy');
+    const pixDone = document.getElementById('pixDone');
+    const whatsappLink = document.getElementById('whatsappLink');
+    const gridCount = document.getElementById('gridCount');
+
+    // ── RENDER PRODUCTS ──
+    function renderProducts() {
+      const available = products.filter(p => !p.sold);
+      gridCount.textContent = `${available.length} peças`;
+      
+      masonryGrid.innerHTML = products.map(p => `
+        <div class="pin-card ${p.sold ? 'sold' : ''}" data-id="${p.id}">
+          <img src="${p.img}" alt="${p.name}" loading="lazy" />
+          ${p.sold ? '<div class="pin-sold">Vendido</div>' : ''}
+          <div class="pin-overlay"></div>
+          ${!p.sold ? `<button class="pin-save-btn ${cart.some(i => i.id === p.id) ? 'added' : ''}" data-id="${p.id}">
+            ${cart.some(i => i.id === p.id) ? 'Adicionado ✓' : 'Salvar'}
+          </button>` : ''}
+          <div class="pin-info">
+            <div class="pin-title">${p.name}</div>
+            <div class="pin-meta">
+              <span class="pin-price">R$ ${p.price}</span>
+              <span class="pin-size">${p.size}</span>
+            </div>
+          </div>
         </div>
-        <h3 class="font-black text-base leading-tight mt-2">Macaquinho Fitness Preto</h3>
-        <p class="text-xs font-medium mt-1" style="color:#888;">Perfeito para suas aulas de pilates ou gym! Possui um decote lindo nas costas.</p>
-        <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Cropped%20Tricô%20Azul%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Comprar
-        </a>
-      </div>
-    </div>
+      `).join('');
 
-    <!-- ── CARD 7 ── -->
-    <div class="card card-blush">
-      <div class="card-header-accent"></div>
-      <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609339/IMG_6928_3_ruzgck.jpg" alt="Mini Saia Manteiga - Akomb" class="card-img" />
-      <div class="p-4">
-        <div class="flex items-center justify-between mb-1">
-          <span class="badge-size">P</span>
-          <span class="text-lg font-black">R$ 100</span>
+      // Bind save buttons
+      document.querySelectorAll('.pin-save-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = parseInt(btn.dataset.id);
+          toggleCart(id);
+        });
+      });
+    }
+
+    // ── CART LOGIC ──
+    function toggleCart(id) {
+      const product = products.find(p => p.id === id);
+      const existing = cart.findIndex(i => i.id === id);
+      
+      if (existing > -1) {
+        cart.splice(existing, 1);
+      } else {
+        cart.push(product);
+      }
+      
+      saveCart();
+      renderProducts();
+      updateCartUI();
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(i => i.id !== id);
+      saveCart();
+      renderProducts();
+      updateCartUI();
+    }
+
+    function saveCart() {
+      localStorage.setItem('recloset_cart', JSON.stringify(cart));
+    }
+
+    function updateCartUI() {
+      const total = cart.reduce((sum, i) => sum + i.price, 0);
+      
+      // Badge
+      if (cart.length > 0) {
+        cartBadge.textContent = cart.length;
+        cartBadge.classList.remove('hidden');
+      } else {
+        cartBadge.classList.add('hidden');
+      }
+      
+      // Cart items
+      if (cart.length === 0) {
+        cartEmpty.classList.remove('hidden');
+        cartFooter.classList.add('hidden');
+        cartItems.innerHTML = '';
+        cartItems.appendChild(cartEmpty);
+      } else {
+        cartEmpty.classList.add('hidden');
+        cartFooter.classList.remove('hidden');
+        cartItems.innerHTML = cart.map(item => `
+          <div class="cart-item">
+            <img src="${item.img}" alt="${item.name}" />
+            <div class="cart-item-details">
+              <div class="cart-item-title">${item.name}</div>
+              <div class="cart-item-price">R$ ${item.price}</div>
+              <button class="cart-item-remove" data-id="${item.id}">Remover</button>
+            </div>
+          </div>
+        `).join('');
+        
+        cartTotal.textContent = `R$ ${total}`;
+        
+        // Bind remove buttons
+        document.querySelectorAll('.cart-item-remove').forEach(btn => {
+          btn.addEventListener('click', () => removeFromCart(parseInt(btn.dataset.id)));
+        });
+      }
+    }
+
+    // ── CHECKOUT ──
+    function openCheckout() {
+      if (cart.length === 0) return;
+      
+      const total = cart.reduce((sum, i) => sum + i.price, 0);
+      
+      checkoutSummary.innerHTML = `
+        ${cart.map(item => `
+          <div class="checkout-item">
+            <span>${item.name}</span>
+            <span>R$ ${item.price}</span>
+          </div>
+        `).join('')}
+        <div class="checkout-total">
+          <span>Total</span>
+          <span>R$ ${total}</span>
         </div>
-        <h3 class="font-black text-base leading-tight mt-2">Mini Saia Manteiga - Akomb</h3>
-        <p class="text-xs font-medium mt-1" style="color:#888;">Elegância no DNA. Perfeita pra qualquer evento com muito estilo.Nova!</p>
-        <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Saia%20Midi%20Cetim%20Rosa%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Comprar
-        </a>
-      </div>
-    </div>
+      `;
+      
+      // Reset payment options
+      document.querySelectorAll('.payment-option').forEach(opt => {
+        opt.classList.remove('selected');
+      });
+      pixSection.classList.add('hidden');
+      whatsappSection.classList.add('hidden');
+      paymentOptions.classList.remove('hidden');
+      
+      checkoutModal.classList.add('open');
+      cartDrawer.classList.remove('open');
+      cartOverlay.classList.remove('open');
+    }
 
-    <!-- ── CARD 8 ── -->
-    <div class="card card-sage">
-      <div class="card-header-accent"></div>
-      <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609336/IMG_5054_2_yyjes4.jpg" alt="Bucket Hat- New Era" class="card-img" />
-      <div class="p-4">
-        <div class="flex items-center justify-between mb-1">
-          <span class="badge-size">M</span>
-          <span class="text-lg font-black">R$ 100</span>
-        </div>
-        <h3 class="font-black text-base leading-tight mt-2">Bucket Hat- New Era</h3>
-        <p class="text-xs font-medium mt-1" style="color:#888;">Conforto máximo com estilo único. Edição limitada, literalmente.Novo! </p>
-        <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Moletom%20Tie-Dye%20Verde%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Comprar
-        </a>
-      </div>
-    </div>
+    function selectPayment(method) {
+      document.querySelectorAll('.payment-option').forEach(opt => {
+        opt.classList.remove('selected');
+      });
+      document.querySelector(`[data-method="${method}"]`).classList.add('selected');
+      
+      paymentOptions.classList.add('hidden');
+      
+      if (method === 'pix') {
+        pixSection.classList.remove('hidden');
+        whatsappSection.classList.add('hidden');
+      } else {
+        whatsappSection.classList.remove('hidden');
+        pixSection.classList.add('hidden');
+        
+        // Build WhatsApp link
+        const total = cart.reduce((sum, i) => sum + i.price, 0);
+        const items = cart.map(i => `• ${i.name} - R$ ${i.price}`).join('%0A');
+        const msg = `Olá! Quero comprar:%0A%0A${items}%0A%0ATotal: R$ ${total}%0A%0AComo podemos combinar o pagamento e entrega?`;
+        whatsappLink.href = `https://wa.me/5511940651441?text=${msg}`;
+      }
+    }
 
-    <!-- ── CARD 9 ── --> 
-<div class="card card-sky">  
-  <div class="card-header-accent"></div>
-  <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609433/IMG_7732_2_nwljae.jpg" alt="Polo Cropped - Nike" class="card-img" />
-  <div class="p-4">
-    <div class="flex items-center justify-between mb-1">
-      <span class="badge-size">P</span>
-      <span class="text-lg font-black">R$ 80</span>
-    </div>
-    <h3 class="font-black text-base leading-tight mt-2">Polo Cropped - Nike</h3>
-    <p class="text-xs font-medium mt-1" style="color:#888;">Atemporal, perfeita para todas as ocasiões. Sportwear, baby.</p>
-    <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Nome%20da%20Peça%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Comprar
-    </a>
-  </div>
-</div>
+    // ── EVENT LISTENERS ──
+    cartBtn.addEventListener('click', () => {
+      cartDrawer.classList.add('open');
+      cartOverlay.classList.add('open');
+    });
 
-    <!-- ── CARD 10 ── -->
-<div class="card card-blush">  
-  <div class="card-header-accent"></div>
-  <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609398/IMG_7716_2_xrflct.jpg" alt="Cropped Cetim - Zara" class="card-img" />
-  <div class="p-4">
-    <div class="flex items-center justify-between mb-1">
-      <span class="badge-size">P</span>
-      <span class="text-lg font-black">R$ 45</span>
-    </div>
-    <h3 class="font-black text-base leading-tight mt-2">Cropped Cetim - Zara</h3>
-    <p class="text-xs font-medium mt-1" style="color:#888;">Possui dois botões para fechar a frente. Super levinho e fresco para dias de sol com estilo.Usado poucas vezes</p>
-    <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Nome%20da%20Peça%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Comprar
-    </a>
-  </div>
-</div>
+    cartClose.addEventListener('click', () => {
+      cartDrawer.classList.remove('open');
+      cartOverlay.classList.remove('open');
+    });
 
+    cartOverlay.addEventListener('click', () => {
+      cartDrawer.classList.remove('open');
+      cartOverlay.classList.remove('open');
+    });
 
-    <!-- ── CARD 11 ── -->
-<div class="card card-sage">  
-  <div class="card-header-accent"></div>
-  <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609283/IMG_5008_2_rvvv53.jpg" alt="Moletom Cropped Preto" class="card-img" />
-  <div class="p-4">
-    <div class="flex items-center justify-between mb-1">
-      <span class="badge-size">P</span>
-      <span class="text-lg font-black">R$ 50</span>
-    </div>
-    <h3 class="font-black text-base leading-tight mt-2">Moletom Cropped Preto</h3>
-    <p class="text-xs font-medium mt-1" style="color:#888;">Quentinho e estiloso. Usado pouquissimas vezes.</p>
-    <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Nome%20da%20Peça%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Comprar
-    </a>
-  </div>
-</div>
+    continueShopping.addEventListener('click', () => {
+      cartDrawer.classList.remove('open');
+      cartOverlay.classList.remove('open');
+    });
 
+    checkoutBtn.addEventListener('click', openCheckout);
 
-   <!-- ── CARD 12 ── -->
-<div class="card card-sky">  
-  <div class="card-header-accent"></div>
-  <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771609451/IMG_7745_2_dnuou8.jpg" alt="Gym Top - Nike" class="card-img" />
-  <div class="p-4">
-    <div class="flex items-center justify-between mb-1">
-      <span class="badge-size">PP</span>
-      <span class="text-lg font-black">R$ 30</span>
-    </div>
-    <h3 class="font-black text-base leading-tight mt-2">Gym Top - Nike</h3>
-    <p class="text-xs font-medium mt-1" style="color:#888;">Poussui uma perfeita sustentação para treinos intensos.</p>
-    <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Nome%20da%20Peça%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Comprar
-    </a>
-  </div>
-</div>
+    checkoutClose.addEventListener('click', () => {
+      checkoutModal.classList.remove('open');
+    });
 
+    checkoutModal.addEventListener('click', (e) => {
+      if (e.target === checkoutModal) {
+        checkoutModal.classList.remove('open');
+      }
+    });
 
-   <!-- ── CARD 13 ── -->
-<div class="card card-blush">  
-  <div class="card-header-accent"></div>
-  <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771716375/IMG_0101_wt8r4i.jpg" alt="Bota Preta" class="card-img" />
-  <div class="p-4">
-    <div class="flex items-center justify-between mb-1">
-      <span class="badge-size">39</span>
-      <span class="text-lg font-black">R$ 60</span>
-    </div>
-    <h3 class="font-black text-base leading-tight mt-2">Bota Preta</h3>
-    <p class="text-xs font-medium mt-1" style="color:#888;">Estilosa e confortável!Coringa perfeita para se ter no guarda-roupa.</p>
-    <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Nome%20da%20Peça%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Comprar
-    </a>
-  </div>
-</div>
-  
+    document.querySelectorAll('.payment-option').forEach(opt => {
+      opt.addEventListener('click', () => selectPayment(opt.dataset.method));
+    });
 
-  <!-- ── CARD 14 ── -->
-<div class="card card-sage">  
-  <div class="card-header-accent"></div>
-  <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771716360/FullSizeRender_c42ner.jpg" alt="Bolsa 4x1- Carmen Steffens" class="card-img" />
-  <div class="p-4">
-    <div class="flex items-center justify-between mb-1">
-      <span class="badge-size">U</span>
-      <span class="text-lg font-black">R$ 70</span>
-    </div>
-    <h3 class="font-black text-base leading-tight mt-2">Bolsa 3x1- Carmen Steffens</h3>
-    <p class="text-xs font-medium mt-1" style="color:#888;">Bolsa que vira sholder, handbag, cluch e cross-body! Você só precisa dela, nada mais.</p>
-    <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Nome%20da%20Peça%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Comprar
-    </a>
-  </div>
-</div>
+    pixCopy.addEventListener('click', () => {
+      navigator.clipboard.writeText(pixKey.textContent);
+      pixCopy.textContent = 'Copiado!';
+      setTimeout(() => pixCopy.textContent = 'Copiar chave', 2000);
+    });
 
+    pixDone.addEventListener('click', () => {
+      // Clear cart and show success
+      cart = [];
+      saveCart();
+      updateCartUI();
+      checkoutModal.classList.remove('open');
+      alert('Obrigada! Me manda o comprovante no WhatsApp que eu reservo suas peças. 💕');
+    });
 
-   <!-- ── CARD 15 ── -->
-<div class="card card-sky">  
-  <div class="card-header-accent"></div>
-  <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771716377/IMG_0103_txixmw.jpg" alt="Bota Branca" class="card-img" />
-  <div class="p-4">
-    <div class="flex items-center justify-between mb-1">
-      <span class="badge-size">38</span>
-      <span class="text-lg font-black">R$ 60</span>
-    </div>
-    <h3 class="font-black text-base leading-tight mt-2">Bota Branca</h3>
-    <p class="text-xs font-medium mt-1" style="color:#888;">Para dar um toque de personalidade no seu look. Super elegante.</p>
-    <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Nome%20da%20Peça%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Comprar
-    </a>
-  </div>
-</div>
-
-
-  <!-- ── CARD 16 ── -->
-<div class="card card-blush">  
-  <div class="card-header-accent"></div>
-  <img src="https://res.cloudinary.com/dlbmfb4yp/image/upload/v1771718146/IMG_5032_2_nxwz7e.jpg" alt="Top Cintilante Frente Unica" class="card-img" />
-  <div class="p-4">
-    <div class="flex items-center justify-between mb-1">
-      <span class="badge-size">P</span>
-      <span class="text-lg font-black">R$ 50</span>
-    </div>
-    <h3 class="font-black text-base leading-tight mt-2">Top Cintilante Frente Unica</h3>
-    <p class="text-xs font-medium mt-1" style="color:#888;">Dias de sol pedem por um look com esse top! Sexy e delicado.</p>
-    <a href="https://wa.me/5511940651441?text=Olá!%20Tenho%20interesse%20na%20peça%20Nome%20da%20Peça%20do%20Bazar." target="_blank" class="btn-whatsapp mt-4">
-     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Comprar
-    </a>
-  </div>
-</div>
-  </div><!-- /grid -->
-</section>
-
-  
-<footer class="px-5 py-10">
-  <div class="max-w-5xl mx-auto">
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-
-      <!-- Brand -->
-      <div>
-        <h2 class="text-2xl font-black text-white" style="font-family:'Playfair Display',serif;">Recloset By Luisa</h2>
-        <p class="text-sm mt-1" style="color:#aaa;">Moda circular com muito estilo.</p>
-      </div>
-
-      <!-- Links -->
-      <div class="flex flex-col gap-3 text-sm" style="color:#ccc;">
-        <a href="https://instagram.com" target="_blank" class="flex items-center gap-2 hover:text-white transition-colors">
-          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          @reclosetbyluisa
-        </a>
-        <a href="https://wa.me/5511940651441" target="_blank" class="flex items-center gap-2 hover:text-white transition-colors">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          (11) 94065-1441
-        </a>
-      </div>
-    </div>
-
-    <!-- Shipping note -->
-    <div class="mt-8 pt-6 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
-      <p class="text-xs" style="color:#888;">
-        📦 <strong style="color:#aaa;">Envios para todo o Brasil</strong> via Correios e transportadoras. Prazo calculado no ato da compra.
-      </p>
-      <p class="text-xs" style="color:#555;">
-        Feito com ♥ pela Luisa · 2025
-      </p>
-    </div>
-  </div>
-</footer>
-
+    // ── INIT ──
+    renderProducts();
+    updateCartUI();
+  </script>
 
 </body>
 </html>
